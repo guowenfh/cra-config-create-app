@@ -10,6 +10,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "analyze": "react-app-rewired build --analyze",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },

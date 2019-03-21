@@ -1,13 +1,4 @@
-const { override, addLessLoader } = require('customize-cra');
-const overCraConfig = require('./cra-config/index')
-// 重写部分与环境变量以及paths相关的东西
-overCraConfig()
 
+const overrideCraConfig = require('./cra-config/index')
 
-
-
-
-module.exports = override(
-  addLessLoader(),
-  // addBundleVisualizer()
-);
+module.exports = overrideCraConfig()
