@@ -8,7 +8,7 @@
     "react-scripts": "2.1.8"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "react-app-rewired start --progress",
     "build": "react-app-rewired build",
     "analyze": "react-app-rewired build --analyze",
     "test": "react-app-rewired test",
@@ -17,12 +17,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "devDependencies": {
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.12",
@@ -32,5 +26,17 @@
     "react-app-rewired": "^2.1.1",
     "react-hot-loader": "^4.8.0",
     "webpack-bundle-analyzer": "^3.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
