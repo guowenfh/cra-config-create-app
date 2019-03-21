@@ -12,16 +12,39 @@
     "build": "react-app-rewired build",
     "analyze": "react-app-rewired build --analyze",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format-code": "prettier-eslint --write \"src/**/*.js\" \"src/**/*.jsx\"",
+    "lint-staged": "lint-staged",
+    "precommit-msg": "echo '🐉 Start pre-commit checks...' && exit 0",
+    "postinstall": "node node_modules/husky/lib/installer/bin install"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "lint-staged": {
+    "src/**/**.{js,jsx}": [
+      "prettier-eslint --write",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "precommit-msg",
+    "lint-staged"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit-msg && lint-staged"
+    }
+  },
   "devDependencies": {
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.12",
+    "husky": "^1.3.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4",
+    "prettier-eslint-cli": "^4.7.1",
     "react-app-rewire-hot-loader": "^2.0.1",
     "react-app-rewired": "^2.1.1",
     "react-hot-loader": "^4.8.0",

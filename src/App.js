@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import styles from './App.module.css';
-import { hot } from 'react-hot-loader/root'
+import React, { Component } from "react";
+import logo from "./logo.png";
+import styles from "./App.module.css";
+import { hot } from "react-hot-loader/root";
 class App extends Component {
   render() {
     return (
@@ -11,6 +11,7 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+
           <a
             className={styles["App-link"]}
             href="https://reactjs.org"
@@ -25,4 +26,4 @@ class App extends Component {
   }
 }
 
-export default process.env.NODE_ENV === "development" ? hot(App) : App
+export default (process.env.NODE_ENV === "development" ? hot(App) : App);
