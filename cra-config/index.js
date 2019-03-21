@@ -1,13 +1,25 @@
 const config = require('./config')
-const {overrideProductionSourceMap, overrideAppBuildPath} = require('./utils')
+const {overrideProductionSourceMap, overrideReactHotLoader, overrideAppBuildPath} = require('./utils')
+const { override, addLessLoader, addBundleVisualizer, disableEsLint, fixBabelImports } = require('customize-cra');
 const isProduction  = process.env.NODE_ENV === 'production'
-const buildConfig = isProduction ? config.build : {}
-const { override, addLessLoader, addBundleVisualizer } = require('customize-cra');
-const devConfig = isProduction ? config.dev : {}
+
 
 const overrides = [
-    addLessLoader(),
-    addBundleVisualizer({}, true)
+  addLessLoader({
+    javascriptEnabled: true
+  }),
+  addBundleVisualizer({}, true),
+  fixBabelImports('antd', {
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+    style: true
+  }),
+  fixBabelImports('lodash', {
+    libraryName: 'lodash',
+    libraryDirectory: '',
+    camel2DashComponentName: false // default: true
+  }),
+  overrideReactHotLoader(process.env.NODE_ENV)
 ]
 
 // 如果时构建环境
@@ -16,9 +28,13 @@ if(isProduction){
     //     addBundleVisualizer({}, true)
     // )
     // 重写正式构建时，是否需要 sourceMap
-    overrideProductionSourceMap(buildConfig.productionSourceMap)
+    overrideProductionSourceMap(config.build.productionSourceMap)
 
-    overrideAppBuildPath(buildConfig.appBuild)
+    overrideAppBuildPath(config.build.appBuild)
+} else {
+    if(config.dev.useEslint === false){
+        overrides.push(disableEsLint())
+    }
 }
 
 module.exports = () => override(...overrides);

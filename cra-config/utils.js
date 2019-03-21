@@ -1,8 +1,16 @@
 const paths = require('react-scripts/config/paths');
+const rewireReactHotLoader = require('react-app-rewire-hot-loader')
 
 
 const isProduction  = process.env.NODE_ENV === 'production'
 
+
+/**
+ * 添加 react hot loader
+ *
+ * @param {String} env
+ */
+const overrideReactHotLoader = (env) => (config)=> rewireReactHotLoader(config, env)
 
 /**
  * 重写正式构建时，是否需要 sourceMap
@@ -25,5 +33,6 @@ function overrideAppBuildPath(path) {
 
 module.exports = {
     overrideProductionSourceMap,
-    overrideAppBuildPath
+    overrideAppBuildPath,
+    overrideReactHotLoader
 }

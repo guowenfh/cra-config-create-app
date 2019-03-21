@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import styles from './App.module.css';
-
+import { hot } from 'react-hot-loader/root'
 class App extends Component {
   render() {
     return (
@@ -25,4 +25,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default process.env.NODE_ENV === "development" ? hot(App) : App

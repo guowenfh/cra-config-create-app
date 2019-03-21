@@ -5,6 +5,16 @@ const appDirectory = fs.realpathSync(process.cwd());
 
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 module.exports = {
+  dev:{
+    /**
+     * 是否启用 https 的构建
+     */
+    https: false,
+    /**
+     * 是否启用 eslint 检查
+     */
+    useEslint: true,
+  },
   build: {
     /**
      * 构建时打包文件夹
@@ -15,6 +25,5 @@ module.exports = {
      */
     productionSourceMap: false,
 
-    bundleAnalyzerReport: process.env.npm_config_report
   }
 }
