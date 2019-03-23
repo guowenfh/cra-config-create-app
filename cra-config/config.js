@@ -1,13 +1,12 @@
-
-const fs = require('fs');
+const fs = require('fs')
 const path = require('path')
-const appDirectory = fs.realpathSync(process.cwd());
+const appDirectory = fs.realpathSync(process.cwd())
 
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
 
 module.exports = {
   // 开发环境
-  dev:{
+  dev: {
     /**
      * 是否启用 https 的构建
      * 修改 host， port 等。
@@ -27,8 +26,7 @@ module.exports = {
     /**
      * 本地服务器代理的配置
      */
-    proxyTable: {},
-
+    proxyTable: {}
   },
   // 构建正式
   build: {
@@ -39,7 +37,6 @@ module.exports = {
     /**
      * 是否启用 sourcemap
      */
-    productionSourceMap: false,
-
+    productionSourceMap: false
   }
 }

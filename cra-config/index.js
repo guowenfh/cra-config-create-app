@@ -1,10 +1,19 @@
 const config = require('./config')
+const eslintConfigFile = require('../.eslintrc.js')
 const { overrideProductionSourceMap, overrideReactHotLoader, overrideAppBuildPath } = require('./utils')
-const { override, addLessLoader, addBundleVisualizer, disableEsLint, fixBabelImports } = require('customize-cra')
+const {
+  override,
+  addLessLoader,
+  addBundleVisualizer,
+  disableEsLint,
+  fixBabelImports,
+  useEslintRc
+} = require('customize-cra')
 const isProduction = process.env.NODE_ENV === 'production'
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 const overrides = [
+  useEslintRc(),
   addLessLoader({
     javascriptEnabled: true
   }),
@@ -21,7 +30,6 @@ const overrides = [
   }),
   overrideReactHotLoader(process.env.NODE_ENV)
 ]
-
 
 // 如果时构建环境
 if (isProduction) {
