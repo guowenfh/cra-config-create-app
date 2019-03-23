@@ -2,11 +2,6 @@
   "name": "cra-config-create-app",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-scripts": "2.1.8"
-  },
   "scripts": {
     "start": "react-app-rewired start --progress",
     "build": "react-app-rewired build",
@@ -18,23 +13,19 @@
     "precommit-msg": "echo '🐉 Start pre-commit checks...' && exit 0",
     "postinstall": "node node_modules/husky/lib/installer/bin install"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss}": [
-      "prettier-eslint --write",
-      "git add"
-    ]
-  },
-  "pre-commit": [
-    "precommit-msg",
-    "lint-staged"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run precommit-msg && lint-staged"
-    }
+  "dependencies": {
+    "@rematch/core": "^1.1.0",
+    "antd": "^3.15.1",
+    "history": "^4.9.0",
+    "moment": "^2.24.0",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-redux": "^6.0.1",
+    "react-router": "^5.0.0",
+    "react-router-config": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "babel-plugin-import": "^1.11.0",
@@ -58,6 +49,21 @@
     "react-app-rewired": "^2.1.1",
     "react-hot-loader": "^4.8.0",
     "webpack-bundle-analyzer": "^3.1.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,less}": [
+      "prettier-eslint --write",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "precommit-msg",
+    "lint-staged"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit-msg && lint-staged"
+    }
   },
   "browserslist": {
     "production": [

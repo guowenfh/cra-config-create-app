@@ -49,8 +49,8 @@ module.exports = {
         semi: [2, 'never'],
         // 强制使用一致的反勾号、双引号或单引号
         quotes: [2, 'single', 'avoid-escape'],
-        'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-        'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
+        'no-debugger': 0,
+        'no-console': 0,
         'prettier/prettier': [
             'error',
             {

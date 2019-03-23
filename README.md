@@ -6,8 +6,11 @@
 
 ```js
 {
+  alias: {
+    '@': resolveApp('src')
+  },
   // 开发环境
-  dev:{
+  dev: {
     /**
      * 是否启用 https 的构建
      * 修改 host， port 等。
@@ -24,7 +27,10 @@
      * 是否自动打开浏览器
      */
     autoOpenBrowser: false,
-
+    /**
+     * 本地服务器代理的配置
+     */
+    proxyTable: {}
   },
   // 构建正式
   build: {
@@ -35,9 +41,9 @@
     /**
      * 是否启用 sourcemap
      */
-    productionSourceMap: false,
-
+    productionSourceMap: false
   }
 }
+
 
 ```

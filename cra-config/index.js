@@ -1,5 +1,4 @@
 const config = require('./config')
-const eslintConfigFile = require('../.eslintrc.js')
 const { overrideProductionSourceMap, overrideReactHotLoader, overrideAppBuildPath } = require('./utils')
 const {
   override,
@@ -7,7 +6,8 @@ const {
   addBundleVisualizer,
   disableEsLint,
   fixBabelImports,
-  useEslintRc
+  useEslintRc,
+  addWebpackAlias
 } = require('customize-cra')
 const isProduction = process.env.NODE_ENV === 'production'
 const isDevelopment = process.env.NODE_ENV === 'development'
@@ -28,20 +28,12 @@ const overrides = [
     libraryDirectory: '',
     camel2DashComponentName: false // default: true
   }),
-  overrideReactHotLoader(process.env.NODE_ENV)
+  addWebpackAlias(config.alias)
 ]
 
-// 如果时构建环境
-if (isProduction) {
-  // overrides.push(
-  //     addBundleVisualizer({}, true)
-  // )
-  // 重写正式构建时，是否需要 sourceMap
-  overrideProductionSourceMap(config.build.productionSourceMap)
-
-  overrideAppBuildPath(config.build.appBuild)
-}
+// 开发环境的配置
 if (isDevelopment) {
+  overrides.push(overrideReactHotLoader(process.env.NODE_ENV))
   if (config.dev.useEslint === false) {
     overrides.push(disableEsLint())
   }
@@ -60,4 +52,21 @@ if (isDevelopment) {
   }
 }
 
-module.exports = () => override(...overrides)
+// 如果是构建环境
+if (isProduction) {
+  // overrides.push(
+  //     addBundleVisualizer({}, true)
+  // )
+  // 重写正式构建时，是否需要 sourceMap
+  overrideProductionSourceMap(config.build.productionSourceMap)
+
+  overrideAppBuildPath(config.build.appBuild)
+}
+
+module.exports = () => ({
+  webpack: override(...overrides),
+  devServer: configFunction => (proxy, allowedHost) => {
+    const newConfig = configFunction(config.dev.proxyTable, allowedHost)
+    return newConfig
+  }
+})

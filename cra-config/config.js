@@ -5,6 +5,9 @@ const appDirectory = fs.realpathSync(process.cwd())
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
 
 module.exports = {
+  alias: {
+    '@': resolveApp('src')
+  },
   // 开发环境
   dev: {
     /**
