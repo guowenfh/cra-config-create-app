@@ -65,6 +65,7 @@
       "pre-commit": "npm run precommit-msg && lint-staged"
     }
   },
+  "theme": "./src/theme.js",
   "browserslist": {
     "production": [
       ">0.2%",

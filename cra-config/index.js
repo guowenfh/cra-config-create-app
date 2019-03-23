@@ -1,5 +1,10 @@
 const config = require('./config')
-const { overrideProductionSourceMap, overrideReactHotLoader, overrideAppBuildPath } = require('./utils')
+const {
+  overrideProductionSourceMap,
+  overrideThemeConfig,
+  overrideReactHotLoader,
+  overrideAppBuildPath
+} = require('./utils')
 const {
   override,
   addLessLoader,
@@ -15,7 +20,8 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 const overrides = [
   useEslintRc(),
   addLessLoader({
-    javascriptEnabled: true
+    javascriptEnabled: true,
+    modifyVars: overrideThemeConfig()
   }),
   addBundleVisualizer({}, true),
   fixBabelImports('antd', {
