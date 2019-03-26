@@ -1,9 +1,27 @@
-import BasicLayout from '@/layouts/BasicLayout'
-import IndexLayout from '@/layouts/IndexLayout'
-import Login from '@/routes/Login/'
-import PictureDetails from '@/routes/Index/PictureDetails'
-import PictureModel from '@/routes/Index/PictureModel'
-import PageNotFound from '@/components/PageNotFound/'
+import Loadable from 'react-loadable'
+import Loading from './../components/Loading'
+
+const BasicLayout = Loadable({
+  loader: () => import(/* webpackChunkName: "BasicLayout" */ '@/layouts/BasicLayout'),
+  loading: Loading
+})
+const IndexLayout = Loadable({
+  loader: () => import(/* webpackChunkName: "IndexLayout" */ '@/layouts/IndexLayout'),
+  loading: Loading
+})
+const Login = Loadable({ loader: () => import(/* webpackChunkName: "Login" */ '@/routes/Login/'), loading: Loading })
+const PictureDetails = Loadable({
+  loader: () => import(/* webpackChunkName: "PictureDetails" */ '@/routes/Index/PictureDetails'),
+  loading: Loading
+})
+const PictureModel = Loadable({
+  loader: () => import(/* webpackChunkName: "PictureModel" */ '@/routes/Index/PictureModel'),
+  loading: Loading
+})
+const PageNotFound = Loadable({
+  loader: () => import(/* webpackChunkName: "PageNotFound" */ '@/components/PageNotFound/'),
+  loading: Loading
+})
 
 const routes = [
   {
