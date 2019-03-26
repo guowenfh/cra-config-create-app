@@ -27,6 +27,50 @@ function overrideAppBuildPath(path) {
     paths.appBuild = path
   }
 }
+
+/**
+ * 重写 构建时的配置
+ */
+const overrideOptimization = () => config => {
+  config.optimization.splitChunks = {
+    chunks: 'async',
+    // minSize: 30000, // 模块大于30k会被抽离到公共模块
+    // minChunks: 3, // 模块出现1次就会被抽离到公共模块
+    // maxAsyncRequests: 5, // 异步模块，一次最多只能被加载5个
+    // maxInitialRequests: 3, // 入口模块最多只能加载3个
+    name: true,
+    cacheGroups: {
+      vendors: {
+        test(file) {
+          // console.error(file.resource)
+          if (file.resource && /\.jsx?$/.test(file.resource)) {
+            if (/node_modules/i.test(file.resource)) {
+              return true
+            }
+            return false
+          }
+          return false
+        },
+        name: 'vendor',
+        chunks: 'all',
+        minChunks: 2,
+        priority: -10,
+        enforce: true,
+        reuseExistingChunk: true
+      },
+      default: {
+        minChunks: 3,
+        priority: 10,
+        reuseExistingChunk: true
+      }
+    }
+  }
+  config.optimization.runtimeChunk = {
+    name: 'manifest'
+  }
+  return config
+}
+
 /**
  * 修改antd的主题色
  */
@@ -51,5 +95,6 @@ module.exports = {
   overrideProductionSourceMap,
   overrideAppBuildPath,
   overrideReactHotLoader,
-  overrideThemeConfig
+  overrideThemeConfig,
+  overrideOptimization
 }

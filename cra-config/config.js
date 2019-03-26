@@ -19,13 +19,13 @@ module.exports = {
     HOST: '0.0.0.0',
     PORT: 5000,
     /**
-     s* 是否启用 eslint 检查
+     s* 在 webpack 中 是否启用 eslint 检查
      */
     useEslint: true,
     /**
      * 是否自动打开浏览器
      */
-    autoOpenBrowser: false,
+    autoOpenBrowser: true,
     /**
      * 本地服务器代理的配置
      */
@@ -33,6 +33,10 @@ module.exports = {
   },
   // 构建正式
   build: {
+    /**
+     * 在 webpack 中 是否启用 eslint 检查
+     */
+    useEslint: false,
     /**
      * 构建时打包文件夹
      */

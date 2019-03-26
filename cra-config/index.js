@@ -3,7 +3,8 @@ const {
   overrideProductionSourceMap,
   overrideThemeConfig,
   overrideReactHotLoader,
-  overrideAppBuildPath
+  overrideAppBuildPath,
+  overrideOptimization
 } = require('./utils')
 const {
   override,
@@ -60,7 +61,10 @@ if (isDevelopment) {
 
 // 如果是构建环境
 if (isProduction) {
-  overrides.push(addBundleVisualizer({}, true))
+  if (config.dev.useEslint === false) {
+    overrides.push(disableEsLint())
+  }
+  overrides.push(overrideOptimization())
   // 重写正式构建时，是否需要 sourceMap
   overrideProductionSourceMap(config.build.productionSourceMap)
 
