@@ -1,15 +1,26 @@
-一个基于 create-react-app 和 react-app-rewired 一个开箱即用的一个基础项目骨架。
+# 一个基于 create-react-app 和 react-app-rewired 开箱即用的一个基础项目骨架。
+
+> 本项目想法源自于 既希望能直接享受到 cra 带来的可升级的机制，
+> 又能够和 vue-cli@2 一样支持一些基础的配置项，
+> 于是利用 react-app-rewired 和 环境变量 的支持 把部分选项直接写成了配置项。
+> 支持直接修改配置项使用。
+
+支持 module.css / module.less 等 css module 语法，推荐使用 `npm i -S classnames` 库来更好的使用 css module
 
 添加了 antd / react-router / rematch(redux) / react-hot-loader 等基础内容
 
-基于 react-loadable 实现的代码拆分
+基于 react-loadable 实现的按照路由的代码拆分。
 
-基于 eslint / prettier / husky 实现了项目代码风格的统一（自动格式化
+基于 eslint / prettier / husky 实现了项目代码风格(Lint Tools)的统一（自动格式化
 
-源自于 vue-cli@2 的想法，把部分选项直接写成了配置项。支持直接修改配置项使用
+## 使用说明
+
+当需要写入使用的全局环境变量时，需使用 `process.env.REACT_APP_XXX = xxx` 形式才能拿到。 （只支持字符串）
+
+使用 `%REACT_APP_XXX%` 方式获取
+
 
 已经支持的配置如下： `cra-config/config.js`
-
 
 
 ```js
@@ -56,7 +67,5 @@
     productionSourceMap: false
   }
 }
-
-
 
 ```
