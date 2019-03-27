@@ -11,7 +11,7 @@
 
 基于 react-loadable 实现的按照路由的代码拆分。
 
-基于 eslint / prettier / husky 实现了项目代码风格(Lint Tools)的统一（自动格式化
+基于 eslint / standard / prettier / husky 实现了项目代码风格(Lint Tools)的统一（自动格式化 使用了 standard 的代码风格
 
 ## 使用说明
 
