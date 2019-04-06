@@ -19,14 +19,6 @@ module.exports = {
             modules: true
         }
     },
-    globals: {
-        $: true,
-        jQuery: true,
-        fabric: true,
-        editor: true,
-        pubsub: true,
-        SOP: true
-    },
     env: {
         browser: true,
         node: true,
@@ -38,7 +30,6 @@ module.exports = {
     plugins: ['prettier'],
     //  ,
     extends: [
-        // 'react-app',
         'standard',
         'standard-jsx',
         'prettier',
