@@ -4,7 +4,8 @@ const {
   overrideThemeConfig,
   overrideReactHotLoader,
   overrideAppBuildPath,
-  overrideOptimization
+  overrideOptimization,
+  overrideDevtool
 } = require('./utils')
 const {
   override,
@@ -35,7 +36,8 @@ const overrides = [
     libraryDirectory: '',
     camel2DashComponentName: false // default: true
   }),
-  addWebpackAlias(config.alias)
+  addWebpackAlias(config.alias),
+  overrideDevtool()
 ]
 
 // 开发环境的配置

@@ -2,12 +2,27 @@ const paths = require('react-scripts/config/paths')
 const rewireReactHotLoader = require('react-app-rewire-hot-loader')
 const path = require('path')
 const fs = require('fs')
+const isEnvProduction = process.env.NODE_ENV === 'production'
+const isEnvDevelopment = process.env.NODE_ENV === 'development'
+const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false'
 /**
  * 添加 react hot loader
  *
  * @param {String} env
  */
 const overrideReactHotLoader = env => config => rewireReactHotLoader(config, env)
+/**
+ * 重写开发时 source map
+ */
+const overrideDevtool = () => config => {
+  config.devtool = isEnvProduction
+    ? shouldUseSourceMap
+      ? 'source-map'
+      : false
+    : isEnvDevelopment && 'cheap-module-eval-source-map'
+  console.error(config)
+  return config
+}
 
 /**
  * 重写正式构建时，是否需要 sourceMap
@@ -93,6 +108,7 @@ function overrideThemeConfig() {
 }
 module.exports = {
   overrideProductionSourceMap,
+  overrideDevtool,
   overrideAppBuildPath,
   overrideReactHotLoader,
   overrideThemeConfig,
