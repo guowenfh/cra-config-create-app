@@ -3,14 +3,10 @@ export default {
     query: {} // 全局一些属性，比如 location.search 拿到的值
   },
   reducers: {
+    // @rematch/immer 自动不可变数据
     setQuery(state, payload) {
-      return {
-        ...state,
-        query: {
-          ...state.query,
-          ...payload
-        }
-      }
+      state.query = payload
+      return state
     }
   },
   effects: {

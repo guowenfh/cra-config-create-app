@@ -13,6 +13,10 @@
 
 基于 eslint / standard / prettier / husky 实现了项目代码风格(Lint Tools)的统一（自动格式化 使用了 standard 的代码风格
 
+状态管理工具方面使用 @rematch , 并且内置了插件 @rematch/immer 以及 @rematch/loading
+
+具体使用方式参考: [Rematch实践指南](https://rematch.gitbook.io/handbook/cha-jian)
+
 ## 使用说明
 
 当需要写入使用的全局环境变量时，需使用 `process.env.REACT_APP_XXX = xxx` 形式才能拿到。 （只支持字符串）
