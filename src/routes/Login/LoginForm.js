@@ -7,6 +7,7 @@ class NormalLoginForm extends Component {
   state = {
     loading: false
   }
+
   handleSubmit = e => {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
@@ -35,6 +36,7 @@ class NormalLoginForm extends Component {
         })
     })
   }
+
   render() {
     const { getFieldDecorator } = this.props.form
     const { loading } = this.state

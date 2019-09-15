@@ -4,6 +4,7 @@ export default class ImageDetails extends Component {
   state = {
     data: {}
   }
+
   async componentDidMount() {
     const data = await getTrade()
     this.setState({ data })

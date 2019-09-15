@@ -14,5 +14,5 @@ class Root extends Component {
     )
   }
 }
-export default (process.env.NODE_ENV === 'development' ? hot(Root) : Root)
+export default process.env.NODE_ENV === 'development' ? hot(Root) : Root
 // export default Root

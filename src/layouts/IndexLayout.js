@@ -14,6 +14,7 @@ class Admin extends Component {
     }
     history.push(e.key)
   }
+
   componentWillMount() {}
   render() {
     const { location } = this.props
@@ -26,7 +27,8 @@ class Admin extends Component {
               onClick={this.onMenuClick}
               mode="inline"
               selectedKeys={[location.pathname]}
-              style={{ height: '100%', borderRight: 0 }}>
+              style={{ height: '100%', borderRight: 0 }}
+            >
               {route.routes.map(item => {
                 if (typeof item.isMenu === 'boolean' && item.isMenu === false) {
                   return null
@@ -41,7 +43,8 @@ class Admin extends Component {
                           <Icon type={item.icon} />
                           {item.name}
                         </span>
-                      }>
+                      }
+                    >
                       {item.children.map(child => {
                         return (
                           <Menu.Item key={child.path} style={{ height: 40, display: 'block' }}>
@@ -56,7 +59,8 @@ class Admin extends Component {
                                   whiteSpace: 'normal',
                                   lineHeight: '20px',
                                   marginTop: 10
-                                }}>
+                                }}
+                              >
                                 {child.name}
                               </div>
                             </span>
@@ -79,7 +83,8 @@ class Admin extends Component {
                           whiteSpace: 'normal',
                           lineHeight: '20px',
                           marginTop: 10
-                        }}>
+                        }}
+                      >
                         {item.name}
                       </div>
                     </span>
